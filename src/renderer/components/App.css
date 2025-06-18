@@ -1,0 +1,446 @@
+.app {
+  height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.app-container {
+  display: flex;
+  height: 100%;
+}
+
+/* SearchPanel */
+.search-panel {
+  width: 400px;
+  padding: 20px;
+  border-right: 1px solid #e0e0e0;
+  background-color: #f8f9fa;
+}
+
+.search-panel h2 {
+  margin: 0 0 20px 0;
+  font-size: 18px;
+  color: #333;
+}
+
+/* 검색 패널 헤더 */
+.search-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-header h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+/* 전체 저장 버튼 */
+.save-all-btn {
+  padding: 8px 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.save-all-btn:hover {
+  background-color: #218838;
+}
+
+.save-all-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.25);
+}
+
+/* 상태 메시지 창 */
+.status-message {
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.status-message.loading {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  border: 1px solid #bbdefb;
+}
+
+.status-message.error {
+  background-color: #ffebee;
+  color: #d32f2f;
+  border: 1px solid #ffcdd2;
+}
+
+.status-message.success {
+  background-color: #e8f5e8;
+  color: #2e7d32;
+  border: 1px solid #c8e6c9;
+}
+
+/* 도움말 섹션 */
+.help-section {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.help-btn {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  background-color: #f8f9fa;
+  cursor: help;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.help-btn:hover {
+  background-color: #e9ecef;
+  border-color: #007bff;
+}
+
+.help-icon {
+  font-size: 12px;
+  font-weight: bold;
+  color: #6c757d;
+}
+
+.help-btn:hover .help-icon {
+  color: #007bff;
+}
+
+/* 도움말 툴팁 */
+.help-tooltip {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  background: #333;
+  color: white;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  line-height: 1.4;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(5px);
+  transition: all 0.2s;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  min-width: 280px;
+}
+
+.help-btn:hover .help-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* 툴팁 화살표 */
+.help-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 12px;
+  border: 6px solid transparent;
+  border-top-color: #333;
+}
+
+/* BibleSearchForm */
+.bible-search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 4px;
+  font-weight: 500;
+  color: #555;
+  font-size: 14px;
+}
+
+.form-group input {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* 성경책 입력 컨테이너 */
+.input-container {
+  position: relative;
+}
+
+/* 절 범위 입력 */
+.verse-range {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.verse-input {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 버튼들 */
+.form-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.search-btn,
+.reset-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.search-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.search-btn:hover {
+  background-color: #0056b3;
+}
+
+.reset-btn {
+  background-color: #6c757d;
+  color: white;
+}
+
+.reset-btn:hover {
+  background-color: #545b62;
+}
+
+/* BookDropdown */
+.book-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: white;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.dropdown-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.dropdown-item:hover,
+.dropdown-item.selected {
+  background-color: #f8f9fa;
+}
+
+.dropdown-item.selected {
+  background-color: #e3f2fd;
+}
+
+.book-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-korean {
+  font-weight: 500;
+  color: #333;
+}
+
+.book-english {
+  font-size: 12px;
+  color: #666;
+}
+
+/* ResultsPanel */
+.results-panel {
+  flex: 1;
+  padding: 20px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+.results-panel h2 {
+  margin: 0 0 20px 0;
+  font-size: 18px;
+  color: #333;
+  flex-shrink: 0;
+}
+
+/* 결과 패널 헤더 */
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-shrink: 0;
+}
+
+.results-header h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.results-content {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* 스크롤바 스타일링 */
+.results-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.results-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.results-content::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.results-content::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+.no-results {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+/* VersesList */
+.verses-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.verses-list.empty {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+/* VerseCard */
+.verse-card {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 16px;
+  transition: box-shadow 0.2s, border-color 0.2s, background-color 0.2s;
+}
+
+.verse-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.verse-card.focused {
+  background: #e3f2fd;
+  border-color: #2196f3;
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+}
+
+/* 주소 카드 스타일 */
+.verse-card.address-card {
+  background: #f3e5f5;
+  border-color: #9c27b0;
+}
+
+.verse-card.address-card.focused {
+  background: #e1bee7;
+  border-color: #9c27b0;
+  box-shadow: 0 4px 12px rgba(156, 39, 176, 0.3);
+}
+
+.address-content {
+  text-align: center;
+}
+
+.address-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #9c27b0;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.address-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #4a148c;
+  line-height: 1.4;
+}
+
+.verse-reference {
+  font-weight: 600;
+  color: #007bff;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.verse-text {
+  line-height: 1.6;
+  color: #333;
+  font-size: 15px;
+}
