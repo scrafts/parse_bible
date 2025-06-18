@@ -45,7 +45,7 @@
     "appId": "com.bible.copy.app",
     "productName": "Bible Copy App",
     "directories": {
-      "output": "dist"
+      "output": "release"
     },
     "files": [
       "src/electron/**/*",

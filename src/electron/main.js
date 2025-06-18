@@ -18,8 +18,16 @@ function createWindow() {
     minHeight: 600
   });
 
-  mainWindow.loadURL('http://localhost:3000');
-  mainWindow.webContents.openDevTools();
+  // 개발/프로덕션 환경에 따른 URL 설정
+  const isDev = process.env.NODE_ENV === 'development';
+  
+  if (isDev) {
+    mainWindow.loadURL('http://localhost:3000');
+    mainWindow.webContents.openDevTools();
+  } else {
+    // 프로덕션에서는 빌드된 HTML 파일 로드
+    mainWindow.loadFile(path.join(__dirname, '../../build/index.html'));
+  }
 
   // 기본 메뉴를 완전히 교체하여 기본 단축키 동작 방지
   const menuTemplate = [
@@ -90,6 +98,11 @@ function createWindow() {
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
+  
+  // 윈도우에서 창 닫기 시 강제 종료
+  mainWindow.on('close', () => {
+    app.quit();
+  });
 }
 
 app.whenReady().then(() => {
@@ -112,7 +125,17 @@ app.on('window-all-closed', () => {
   // 전역 단축키 해제
   globalShortcut.unregisterAll();
   
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
+  // 모든 플랫폼에서 완전히 종료
+  app.quit();
+});
+
+// 강제 종료 이벤트 추가
+app.on('before-quit', () => {
+  // 모든 리소스 정리
+  globalShortcut.unregisterAll();
+});
+
+// 완전히 종료될 때
+app.on('will-quit', (event) => {
+  globalShortcut.unregisterAll();
 });
